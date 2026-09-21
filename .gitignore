@@ -3,3 +3,5 @@ __pycache__/
 *.pyc
 .pytest_cache/
 NOTES.md
+*.patch
+BRIEF.md

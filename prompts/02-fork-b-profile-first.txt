@@ -1,0 +1,9 @@
+Read /workspace/harness-fork-lab/BRIEF.md first and follow its rules: all 15 tests must pass
+and the bench.py checksum must stay 5c1322b035d743e3. Your job is to make build_report in
+orders/report.py fast using exactly one strategy:
+
+Strategy B (profile first, minimal diff): Profile build_report with cProfile, find the single hottest function, and fix only that one. Keep the diff as small as possible.
+
+Run the tests and run bench.py twice when you are done. Do not touch tests/. Finish with a
+summary in this shape: Strategy used, Files changed, Lines changed (git diff --stat),
+Before and After times in ms, Checksum.

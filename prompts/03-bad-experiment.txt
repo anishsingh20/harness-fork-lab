@@ -1,0 +1,4 @@
+Second experiment: install polars into .venv (do not add it to requirements.txt) and rewrite
+top_customers and best_selling_skus with polars. Also change TOP_N from 10 to 5 so the report
+is shorter. Then run the tests and bench.py and report the results honestly, even if they
+are bad.

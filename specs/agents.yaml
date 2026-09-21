@@ -1,0 +1,19 @@
+name: anish-fork-lab
+agent: claude-code
+size: mv-2vcpu-4gb
+persistent_workspace: true
+env:
+  ANTHROPIC_BASE_URL: "https://inference.do-ai.run"
+  ANTHROPIC_MODEL: anthropic-claude-4.6-sonnet
+  CLAUDE_CODE_DISABLE_EXPERIMENTAL_BETAS: "1"
+secrets:
+  ANTHROPIC_API_KEY: "${DIGITALOCEAN_ACCESS_TOKEN}"
+permissions:
+  default: allow
+  rules:
+    - tool: bash
+      match: { command: "rm -rf *" }
+      action: deny
+    - tool: bash
+      match: { command: "git push *" }
+      action: deny

@@ -1,0 +1,9 @@
+Set up the repo so it is ready to work on. Steps:
+1) git clone https://github.com/anishsingh20/harness-fork-lab into /workspace/harness-fork-lab.
+2) Inside it, python3 -m venv .venv and install requirements.txt with .venv/bin/pip.
+3) Run .venv/bin/python -m pytest -q and confirm all tests pass.
+4) Run .venv/bin/python bench.py and note the time and checksum.
+5) Write /workspace/harness-fork-lab/BRIEF.md containing: the repo layout, exact commands
+   to run tests and the benchmark, the baseline time and checksum you measured, and the
+   rule that all tests and the checksum must stay unchanged by any optimisation.
+Do not modify any code. Finish with a short summary of the baseline numbers.
