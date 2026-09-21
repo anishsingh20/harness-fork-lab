@@ -1,5 +1,7 @@
 # harness-fork-lab
 
+[![tests](https://github.com/anishsingh20/harness-fork-lab/actions/workflows/tests.yml/badge.svg)](https://github.com/anishsingh20/harness-fork-lab/actions/workflows/tests.yml)
+
 The sample repository for the DigitalOcean Community tutorial
 **Checkpoint Once, Fork Three Ways: Parallel Agent Experiments on DigitalOcean Harness Runtime**
 by Anish Singh Walia (Team Lead and Senior Technical Writer, DigitalOcean).
@@ -40,6 +42,8 @@ setup once (57 s)  ->  checkpoint (27 s)  ->  fork x3 (10.6 s)  ->  three strate
 | `specs/mars.py` | Sends one prompt to a session and follows its event stream until the run completes |
 | `prompts/` | The exact prompts used in the tutorial: setup, the three strategies, the bad experiment, the memory check |
 | `scripts/compare.sh` | Runs diff, tests and benchmark inside any number of sessions with `doctl harness-runtime exec` |
+| `pyproject.toml` | pytest config so a bare `pytest -q` finds the `orders` package |
+| `.github/workflows/tests.yml` | Runs the 15 tests and a benchmark smoke test on Python 3.10 and 3.12 |
 
 ## The rules of the game
 
