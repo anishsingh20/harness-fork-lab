@@ -6,7 +6,7 @@ The sample repository for the DigitalOcean Community tutorial
 **Checkpoint Once, Fork Three Ways: Parallel Agent Experiments on DigitalOcean Harness Runtime**
 by [Anish Singh Walia](https://www.digitalocean.com/community/users/asinghwalia)
 (Team Lead and Senior Technical Writer, DigitalOcean). It is the third article in a series on
-[DigitalOcean Managed Agents](https://www.digitalocean.com/blog/managed-agents-runtime-services-private-preview),
+[DigitalOcean Managed Agents](https://docs.digitalocean.com/products/managed-agents/) (in public preview for all users since 21 September 2026),
 after [Connecting AI Agents to SaaS Tools Without Sharing Your Credentials](https://www.digitalocean.com/community/tutorials/connect-tools-ai-agent-action-gateway)
 and [The Agent Never Sees the Key](https://www.digitalocean.com/community/tutorials/credential-brokering-action-gateway).
 
@@ -50,7 +50,7 @@ setup once (57 s)  ->  checkpoint (27 s)  ->  fork x3 (10.6 s)  ->  three strate
 | [`orders/report.py`](orders/report.py) | The nightly report. Correct, and slow on purpose: every aggregation rescans the full order list |
 | [`bench.py`](bench.py) | Times `build_report` on 20,000 orders and prints a 16-character checksum of the output |
 | [`tests/`](tests/) | 15 pytest tests plus a golden report for 500 orders. They pin the report's shape and values |
-| [`specs/agents.yaml`](specs/agents.yaml) | The Harness Runtime spec: Claude Code on a `mv-2vcpu-4gb` sandbox with [DigitalOcean-hosted inference](https://docs.digitalocean.com/products/inference/how-to/use-with-coding-agents/). Every key is explained in [specs/README.md](specs/README.md#agentsyaml) |
+| [`specs/agents.yaml`](specs/agents.yaml) | The Harness Runtime spec: Claude Code on a `mars-2vcpu-4gb` sandbox with [DigitalOcean-hosted inference](https://docs.digitalocean.com/products/inference/how-to/use-with-coding-agents/). Every key is explained in [specs/README.md](specs/README.md#agentsyaml) |
 | [`specs/start-session.py`](specs/start-session.py) | Creates the session by posting the spec to the Managed Agents API ([why](specs/README.md#start-sessionpy)) |
 | [`specs/mars.py`](specs/mars.py) | Sends one prompt to a session and follows its event stream until the run completes ([usage](specs/README.md#marspy)) |
 | [`prompts/`](prompts/) | The exact prompts used in the tutorial: setup, the three strategies, the bad experiment, the memory check ([index](prompts/README.md)) |
@@ -86,13 +86,16 @@ scans the full list once per customer. The other aggregations are O(n x k) for t
 
 You need:
 
-- A DigitalOcean team with Managed Agents enabled. Request access on the
-  [Managed Agents preview page](https://try.digitalocean.com/managed-agents-private-preview/); once enabled it
-  appears in the console under [Managed Agents → Harness Runtime](https://cloud.digitalocean.com/managed-agents).
+- A DigitalOcean account. [Managed Agents](https://docs.digitalocean.com/products/managed-agents/) is in public preview for all users, so there is no
+  waitlist; it appears in the console under [Managed Agents → Harness Runtime](https://cloud.digitalocean.com/managed-agents).
+  Harness Runtime needs a payment method on file and a positive
+  [prepaid balance](https://docs.digitalocean.com/products/managed-agents/agent-harness-runtime/how-to/manage-ahr-prepayment/). The
+  [Harness Runtime quickstart](https://docs.digitalocean.com/products/managed-agents/agent-harness-runtime/quickstart/) starts an agent with one command if you have never used it.
 - A [personal access token](https://docs.digitalocean.com/reference/api/create-personal-access-token/) with full
   access, exported as `DIGITALOCEAN_ACCESS_TOKEN`.
-- [`doctl`](https://docs.digitalocean.com/reference/doctl/) 1.168.0-beta or later. The `harness-runtime` (alias
-  `agent`) commands are only in the beta builds on the [doctl releases page](https://github.com/digitalocean/doctl/releases).
+- [`doctl`](https://docs.digitalocean.com/reference/doctl/) 1.170.0 or later. That release (22 September 2026) is the
+  first standard build with the `harness-runtime` (alias `agent`) commands; the lab in the article ran on
+  1.168.0-beta from the [doctl releases page](https://github.com/digitalocean/doctl/releases) and the commands are the same.
   Run `doctl auth init`, then confirm with `doctl harness-runtime checkpoint --help`.
 - No Anthropic key. The spec points Claude Code at
   [DigitalOcean Serverless Inference](https://docs.digitalocean.com/products/inference/), so the same token pays
@@ -214,8 +217,15 @@ already lives in pandas.
 
 DigitalOcean Managed Agents
 
+- [Managed Agents documentation](https://docs.digitalocean.com/products/managed-agents/) (public preview)
+- [Harness Runtime](https://docs.digitalocean.com/products/managed-agents/agent-harness-runtime/), [quickstart](https://docs.digitalocean.com/products/managed-agents/agent-harness-runtime/quickstart/), [examples](https://docs.digitalocean.com/products/managed-agents/agent-harness-runtime/examples/) and
+  [what you can build](https://docs.digitalocean.com/products/managed-agents/agent-harness-runtime/details/what-you-can-build/)
+- [How to Checkpoint, Fork, and Roll Back Sessions](https://docs.digitalocean.com/products/managed-agents/agent-harness-runtime/how-to/checkpoint-fork-rollback-sessions/)
+- [Environment spec reference](https://docs.digitalocean.com/products/managed-agents/agent-harness-runtime/reference/environment-spec/), [sandbox sizes](https://docs.digitalocean.com/products/managed-agents/agent-harness-runtime/details/features/#sandbox-sizes),
+  [pricing](https://docs.digitalocean.com/products/managed-agents/agent-harness-runtime/details/pricing/) and [limits](https://docs.digitalocean.com/products/managed-agents/agent-harness-runtime/details/limits/)
+- [Action Gateway](https://docs.digitalocean.com/products/managed-agents/action-gateway/) and [how the two services work together](https://docs.digitalocean.com/products/managed-agents/agent-harness-runtime/details/what-you-can-build/#how-harness-runtime-and-action-gateway-work-together)
+- [Harness Runtime release notes](https://docs.digitalocean.com/release-notes/agent-harness-runtime/)
 - [Announcement: DigitalOcean Managed Agents](https://www.digitalocean.com/blog/managed-agents-runtime-services-private-preview)
-- [Request preview access](https://try.digitalocean.com/managed-agents-private-preview/)
 - [Managed Agents in the console](https://cloud.digitalocean.com/managed-agents)
 - [Tutorial 1: Connecting AI Agents to SaaS Tools Without Sharing Your Credentials using DigitalOcean Action Gateway](https://www.digitalocean.com/community/tutorials/connect-tools-ai-agent-action-gateway)
 - [Tutorial 2: The Agent Never Sees the Key: Proving Credential Brokering in DigitalOcean Action Gateway](https://www.digitalocean.com/community/tutorials/credential-brokering-action-gateway)

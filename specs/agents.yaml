@@ -1,6 +1,6 @@
 name: anish-fork-lab
 agent: claude-code
-size: mv-2vcpu-4gb
+size: mars-2vcpu-4gb
 persistent_workspace: true
 env:
   ANTHROPIC_BASE_URL: "https://inference.do-ai.run"

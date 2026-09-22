@@ -12,7 +12,7 @@ One file describes the machine the agent runs on:
 | --- | --- | --- |
 | `name` | `anish-fork-lab` | The session name you pass to every `doctl harness-runtime` command |
 | `agent` | `claude-code` | Harness Runtime also supports `codex` and `opencode` |
-| `size` | `mv-2vcpu-4gb` | The default sandbox. Fork C's pandas install is slow here; that is part of the comparison |
+| `size` | `mars-2vcpu-4gb` | The default sandbox (2 vCPUs, 4 GB). The lab ran when this shape was still called `mv-2vcpu-4gb`; the API now lists only `mars-*` slugs, see [sandbox sizes](https://docs.digitalocean.com/products/managed-agents/agent-harness-runtime/details/features/#sandbox-sizes) or `doctl harness-runtime sizes list`. Fork C's pandas install is slow here; that is part of the comparison |
 | `persistent_workspace` | `true` | Keep `/workspace` across pause and resume |
 | `env.ANTHROPIC_BASE_URL` | `https://inference.do-ai.run` | Point Claude Code at [DigitalOcean Serverless Inference](https://docs.digitalocean.com/products/inference/how-to/use-with-coding-agents/) |
 | `env.ANTHROPIC_MODEL` | `anthropic-claude-4.6-sonnet` | One of the [models served at that endpoint](https://docs.digitalocean.com/products/inference/details/models/) |
